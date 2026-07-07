@@ -1,59 +1,95 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
 class Product {
+
     int productId;
     String productName;
     String category;
 
-    Product(int productId, String productName, String category) {
+    public Product(int productId, String productName, String category) {
         this.productId = productId;
         this.productName = productName;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Product ID: " + productId +
+                ", Product Name: " + productName +
+                ", Category: " + category;
     }
 }
 
 public class EcommerceSearchFunction {
 
-    public static int linearSearch(Product[] products, String target) {
-        for (int i = 0; i < products.length; i++) {
-            if (products[i].productName.equalsIgnoreCase(target)) {
-                return i;
+    // Linear Search
+    public static Product linearSearch(Product[] products, String target) {
+
+        for (Product product : products) {
+            if (product.productName.equalsIgnoreCase(target)) {
+                return product;
             }
         }
-        return -1;
+        return null;
     }
 
-    public static int binarySearch(Product[] products, String target) {
+    // Binary Search
+    public static Product binarySearch(Product[] products, String target) {
+
         int low = 0;
         int high = products.length - 1;
 
         while (low <= high) {
+
             int mid = (low + high) / 2;
 
-            int result = products[mid].productName.compareToIgnoreCase(target);
+            int compare = products[mid].productName.compareToIgnoreCase(target);
 
-            if (result == 0) {
-                return mid;
-            } else if (result < 0) {
+            if (compare == 0) {
+                return products[mid];
+            } else if (compare < 0) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
             }
         }
-        return -1;
+
+        return null;
     }
 
     public static void main(String[] args) {
 
         Product[] products = {
-                new Product(1, "Apple", "Fruit"),
-                new Product(2, "Banana", "Fruit"),
-                new Product(3, "Laptop", "Electronics"),
-                new Product(4, "Mobile", "Electronics")
+
+                new Product(103, "Laptop", "Electronics"),
+                new Product(101, "Apple", "Fruit"),
+                new Product(104, "Mobile", "Electronics"),
+                new Product(102, "Banana", "Fruit"),
+                new Product(105, "Watch", "Accessories")
         };
 
-        int linear = linearSearch(products, "Laptop");
-        System.out.println("Linear Search Index: " + linear);
+        String searchProduct = "Laptop";
 
-        int binary = binarySearch(products, "Laptop");
-        System.out.println("Binary Search Index: " + binary);
+        System.out.println("===== Linear Search =====");
+
+        Product linearResult = linearSearch(products, searchProduct);
+
+        if (linearResult != null)
+            System.out.println(linearResult);
+        else
+            System.out.println("Product Not Found");
+
+        // Sort array before Binary Search
+        Arrays.sort(products, Comparator.comparing(p -> p.productName.toLowerCase()));
+
+        System.out.println("\n===== Binary Search =====");
+
+        Product binaryResult = binarySearch(products, searchProduct);
+
+        if (binaryResult != null)
+            System.out.println(binaryResult);
+        else
+            System.out.println("Product Not Found");
     }
 }
