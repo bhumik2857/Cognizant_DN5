@@ -12,11 +12,14 @@ public class FinancialForecasting {
     public static void main(String[] args) {
 
         double presentValue = 10000;
-        double growthRate = 0.10;
+        double annualGrowthRate = 0.10;
         int years = 5;
 
-        double result = futureValue(presentValue, growthRate, years);
+        double futureValue = futureValue(presentValue, annualGrowthRate, years);
 
-        System.out.println("Future Value = " + result);
+        System.out.printf("Present Value : %.2f%n", presentValue);
+        System.out.printf("Growth Rate   : %.0f%%%n", annualGrowthRate * 100);
+        System.out.println("Years         : " + years);
+        System.out.printf("Future Value  : %.2f%n", futureValue);
     }
 }
