@@ -2,60 +2,76 @@ interface Document {
     void open();
 }
 
+// Concrete Products
 class WordDocument implements Document {
+    @Override
     public void open() {
-        System.out.println("Opening Word Document");
+        System.out.println("Opening Microsoft Word Document...");
     }
 }
 
 class PdfDocument implements Document {
+    @Override
     public void open() {
-        System.out.println("Opening PDF Document");
+        System.out.println("Opening PDF Document...");
     }
 }
 
 class ExcelDocument implements Document {
+    @Override
     public void open() {
-        System.out.println("Opening Excel Document");
+        System.out.println("Opening Microsoft Excel Document...");
     }
 }
 
+// Abstract Factory
 abstract class DocumentFactory {
-    abstract Document createDocument();
+
+    public abstract Document createDocument();
+
+    public void openDocument() {
+        Document document = createDocument();
+        document.open();
+    }
 }
 
-class WordFactory extends DocumentFactory {
+// Concrete Factories
+class WordDocumentFactory extends DocumentFactory {
+
+    @Override
     public Document createDocument() {
         return new WordDocument();
     }
 }
 
-class PdfFactory extends DocumentFactory {
+class PdfDocumentFactory extends DocumentFactory {
+
+    @Override
     public Document createDocument() {
         return new PdfDocument();
     }
 }
 
-class ExcelFactory extends DocumentFactory {
+class ExcelDocumentFactory extends DocumentFactory {
+
+    @Override
     public Document createDocument() {
         return new ExcelDocument();
     }
 }
 
+// Main Class
 public class FactoryMethodPattern {
 
     public static void main(String[] args) {
 
-        DocumentFactory wordFactory = new WordFactory();
-        Document word = wordFactory.createDocument();
-        word.open();
+        DocumentFactory wordFactory = new WordDocumentFactory();
+        wordFactory.openDocument();
 
-        DocumentFactory pdfFactory = new PdfFactory();
-        Document pdf = pdfFactory.createDocument();
-        pdf.open();
+        DocumentFactory pdfFactory = new PdfDocumentFactory();
+        pdfFactory.openDocument();
 
-        DocumentFactory excelFactory = new ExcelFactory();
-        Document excel = excelFactory.createDocument();
-        excel.open();
+        DocumentFactory excelFactory = new ExcelDocumentFactory();
+        excelFactory.openDocument();
     }
 }
