@@ -1,11 +1,14 @@
-package com.cognizant.Exercise2_Implementing_Dependency_Injection;
+@Component
+public class GreetingClient {
 
-import org.springframework.stereotype.Service;
+    private final GreetingService greetingService;
 
-@Service
-public class GreetingService {
+    @Autowired
+    public GreetingClient(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
 
-    public String greet() {
-        return "Welcome to Dependency Injection!";
+    public void showGreeting() {
+        System.out.println(greetingService.greet());
     }
 }
