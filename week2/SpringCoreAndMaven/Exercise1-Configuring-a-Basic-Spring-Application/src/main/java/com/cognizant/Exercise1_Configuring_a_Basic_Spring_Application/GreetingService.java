@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class GreetingService {
     public void greeting(){
-        System.out.println("Hello Mayank Sharma");
+        System.out.println("Hello bhumika gupta");
         System.out.println("Welcome to Spring Boot!");
     }
 }
