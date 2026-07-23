@@ -1,4 +1,7 @@
+# Project documentation
 HELP.md
+
+# Build output
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

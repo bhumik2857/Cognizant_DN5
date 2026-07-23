@@ -1,5 +1,6 @@
 <# : batch portion
 @REM ----------------------------------------------------------------------------
+
 @REM Licensed to the Apache Software Foundation (ASF) under one
 @REM or more contributor license agreements.  See the NOTICE file
 @REM distributed with this work for additional information
@@ -20,6 +21,7 @@
 
 @REM ----------------------------------------------------------------------------
 @REM Apache Maven Wrapper startup batch script, version 3.3.4
+@REM This wrapper script automatically downloads and runs the required Maven version.
 @REM
 @REM Optional ENV vars
 @REM   MVNW_REPOURL - repo url base for downloading maven distribution
