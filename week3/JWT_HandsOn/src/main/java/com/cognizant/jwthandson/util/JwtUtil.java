@@ -21,6 +21,7 @@ public class JwtUtil {
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
 
     // Generate Token
+    // Generate JWT token for authenticated user
     public String generateToken(String username) {
 
         Map<String, Object> claims = new HashMap<>();
